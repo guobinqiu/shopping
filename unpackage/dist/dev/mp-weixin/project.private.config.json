@@ -1,0 +1,54 @@
+{
+  "projectname": "test",
+  "setting": {
+    "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "subpkg/goods_detail/goods_detail",
+          "pathName": "subpkg/goods_detail/goods_detail",
+          "query": "goods_id=234",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "subpkg/goods_list/goods_list",
+          "pathName": "subpkg/goods_list/goods_list",
+          "query": "query=热",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "subpkg/search/search",
+          "pathName": "subpkg/search/search",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/cate/cate",
+          "pathName": "pages/cate/cate",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/cart/cart",
+          "pathName": "pages/cart/cart",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
