@@ -1,7 +1,8 @@
 export default {
 	namespaced: true,
 	state: {
-		address: JSON.parse(uni.getStorageSync('address') || '{}')
+		address: JSON.parse(uni.getStorageSync('address') || '{}'),
+		token: '',
 	},
 	mutations:{
 		updateAddress(state, address){

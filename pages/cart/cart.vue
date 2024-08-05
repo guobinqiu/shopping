@@ -1,5 +1,5 @@
 <template>
-	<view class="cart-container">
+	<view class="cart-container" v-if="cart.length !== 0">
 		<my-address></my-address>
 
 		<view class="cart-title">
@@ -20,9 +20,12 @@
 			</block>
 		</uni-swipe-action>
 
+		<my-settle></my-settle>
 	</view>
 
-	<my-settle></my-settle>
+	<view class="empty-cart" v-else>
+		<text class="tip-text">空空如也</text>
+	</view>	
 </template>
 
 <script>
@@ -79,6 +82,18 @@
 		.cart-title-text {
 			font-size: 14px;
 			margin-left: 10px;
+		}
+	}
+	
+	.empty-cart {
+		display: flex;
+		flex-direction: column;//纵向排列
+		align-items: center; //横向居中
+		padding-top: 150px;
+		.tip-text {
+			font-size: 12px;
+			color: gray;
+			margin-top: 15px;
 		}
 	}
 </style>

@@ -48,12 +48,14 @@ if (!Math) {
   (_easycom_my_address + _easycom_uni_icons + _easycom_my_goods + _easycom_uni_swipe_action_item + _easycom_uni_swipe_action + _easycom_my_settle)();
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
-    a: common_vendor.p({
+  return common_vendor.e({
+    a: _ctx.cart.length !== 0
+  }, _ctx.cart.length !== 0 ? {
+    b: common_vendor.p({
       type: "shop",
       size: "18"
     }),
-    b: common_vendor.f(_ctx.cart, (goods, i, i0) => {
+    c: common_vendor.f(_ctx.cart, (goods, i, i0) => {
       return {
         a: common_vendor.o($options.radioChangeHandler, i),
         b: common_vendor.o($options.numberChangeHandler, i),
@@ -68,10 +70,10 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         g: i
       };
     }),
-    c: common_vendor.p({
+    d: common_vendor.p({
       ["right-options"]: $data.options
     })
-  };
+  } : {});
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/guobin/Documents/HBuilderProjects/test/pages/cart/cart.vue"]]);
 wx.createPage(MiniProgramPage);

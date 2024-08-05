@@ -3,7 +3,8 @@ const common_vendor = require("../common/vendor.js");
 const moduleUser = {
   namespaced: true,
   state: {
-    address: JSON.parse(common_vendor.index.getStorageSync("address") || "{}")
+    address: JSON.parse(common_vendor.index.getStorageSync("address") || "{}"),
+    token: ""
   },
   mutations: {
     updateAddress(state, address) {

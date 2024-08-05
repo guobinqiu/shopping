@@ -10,6 +10,12 @@ const badgeMixin = {
   onShow() {
     this.setBadge();
   },
+  watch: {
+    //当计算属性this.total变化时执行total(newVal, oldVal)函数,省略了newVal和oldVal
+    total() {
+      this.setBadge();
+    }
+  },
   methods: {
     // total() {
     // 	return this.$store.getters['m_cart/total']
