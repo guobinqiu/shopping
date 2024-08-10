@@ -27,6 +27,17 @@
 				</view>
 			</view>
 		</view>
+		
+		<view class="panel">
+			<view class="panel-title">
+				我的订单
+			</view>
+			<view class="panel-body">
+				<view class="panel-item">
+					
+				</view>	
+			</view>
+		</view>
 	</view>
 </template>
 
