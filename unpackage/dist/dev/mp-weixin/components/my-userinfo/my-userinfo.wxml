@@ -1,1 +1,1 @@
-<view> 用户的信息组件 </view>
+<view class="my-userinfo-container"><view class="top-box"><image src="{{a}}" class="avatar"></image><view class="nickname">{{b}}</view></view><view class="panel-list"><view class="panel"><view class="panel-body"><view class="panel-item"><text>8</text><text>收藏的店铺</text></view><view class="panel-item"><text>14</text><text>收藏的商品</text></view><view class="panel-item"><text>18</text><text>关注的商品</text></view><view class="panel-item"><text>84</text><text>足迹</text></view></view></view></view></view>

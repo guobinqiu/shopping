@@ -4,7 +4,8 @@ const moduleUser = {
   namespaced: true,
   state: {
     address: JSON.parse(common_vendor.index.getStorageSync("address") || "{}"),
-    token: ""
+    token: common_vendor.index.getStorageSync("token") || "",
+    userinfo: JSON.parse(common_vendor.index.getStorageSync("userinfo") || "{}")
   },
   mutations: {
     updateAddress(state, address) {
@@ -13,6 +14,20 @@ const moduleUser = {
     },
     saveAddressToStorage(state) {
       common_vendor.index.setStorageSync("address", JSON.stringify(state.address));
+    },
+    updateUserInfo(state, userinfo) {
+      state.userinfo = userinfo;
+      this.commit("m_user/saveUserInfoToStorage");
+    },
+    saveUserInfoToStorage(state) {
+      common_vendor.index.setStorageSync("userinfo", JSON.stringify(state.userinfo));
+    },
+    updateToken(state, token) {
+      state.token = token;
+      this.commit("m_user/saveTokenToStrorage");
+    },
+    saveTokenToStrorage(state) {
+      common_vendor.index.setStorageSync("token", state.token);
     }
   },
   getters: {
