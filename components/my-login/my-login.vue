@@ -9,7 +9,8 @@
 
 <script>
 	import {
-		mapMutations
+		mapMutations,
+		mapState
 	} from 'vuex'
 
 	export default {
@@ -19,8 +20,11 @@
 
 			};
 		},
+		computed: {
+			...mapState('m_user', ['redirectInfo'])
+		},
 		methods: {
-			...mapMutations('m_user', ['updateUserInfo', 'updateToken']),
+			...mapMutations('m_user', ['updateUserInfo', 'updateToken', 'updateRedirectInfo']),
 			//微信基础库用2.20.3
 			getUserInfo(e) {
 				console.log(e)
@@ -47,7 +51,7 @@
 				//console.log(res)
 				if (res.errMsg !== 'login:ok') return uni.$showMsg('登录失败!')
 				//console.log(res.code)
-				
+
 				const query = {
 					code: res.code,
 					encryptedData: info.encryptedData,
@@ -55,18 +59,32 @@
 					rawData: info.rawData,
 					signature: info.signature,
 				}
-				
-				const {data: loginResult} = await uni.$http.post('/api/public/v1/users/wxlogin', query)
+
+				const {
+					data: loginResult
+				} = await uni.$http.post('/api/public/v1/users/wxlogin', query)
 				console.log(loginResult)
-				
+
 				//这里永远不会成功
 				//if (loginResult.meta.status !== 200) return uni.$showMsg('登录失败!')
 				// this.updateToken(loginResult.message.token);
-				
+
 				//做个假的
-				const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIzLCJpYXQiOjE1NjQ3MzAwNzksImV4cCI6MTAwMTU2NDczMDA3OH0.YPt-XeLnjV-_1ITaXGY2FhxmCe4NvXuRnRB8OMCfnPo';
+				const token =
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIzLCJpYXQiOjE1NjQ3MzAwNzksImV4cCI6MTAwMTU2NDczMDA3OH0.YPt-XeLnjV-_1ITaXGY2FhxmCe4NvXuRnRB8OMCfnPo';
 				this.updateToken(token)
+				this.navigateBack()
 			},
+			navigateBack() {
+				if (this.redirectInfo && this.redirectInfo.openType === 'switchTab') {
+					uni.switchTab({
+						url: this.redirectInfo.from,
+						complete: () => {
+							this.updateRedirectInfo(null)
+						},
+					})
+				}
+			}
 		}
 	}
 </script>
