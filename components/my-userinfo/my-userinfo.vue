@@ -27,15 +27,43 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="panel">
 			<view class="panel-title">
 				我的订单
 			</view>
 			<view class="panel-body">
 				<view class="panel-item">
-					
-				</view>	
+					<image src="/static/my-icons/icon1.png" class="icon"></image>
+					<text>待付款</text>
+				</view>
+				<view class="panel-item">
+					<image src="/static/my-icons/icon2.png" class="icon"></image>
+					<text>待收货</text>
+				</view>
+				<view class="panel-item">
+					<image src="/static/my-icons/icon3.png" class="icon"></image>
+					<text>退款/退货</text>
+				</view>
+				<view class="panel-item">
+					<image src="/static/my-icons/icon4.png" class="icon"></image>
+					<text>全部订单</text>
+				</view>
+			</view>
+		</view>
+
+		<view class="panel">
+			<view class="panel-list-item">
+				<text>收货地址</text>
+				<uni-icons type="arrowright" size="15"></uni-icons>
+			</view>
+			<view class="panel-list-item">
+				<text>联系客服</text>
+				<uni-icons type="arrowright" size="15"></uni-icons>
+			</view>
+			<view class="panel-list-item">
+				<text>退出登录</text>
+				<uni-icons type="arrowright" size="15"></uni-icons>
 			</view>
 		</view>
 	</view>
@@ -92,23 +120,47 @@
 		padding: 0 10px;
 		position: relative;
 		top: -10px;
+	}
 
-		.panel {
-			background-color: white;
-			border-radius: 3px;
-			margin-bottom: 8px;
-			.panel-body {
+	.panel {
+		background-color: white;
+		border-radius: 3px;
+		margin-bottom: 8px;
+
+		.panel-title {
+			line-height: 45px;
+			padding-left: 10px;
+			font-size: 15px;
+			border-bottom: 1px solid #F4F4F4;
+		}
+
+		.panel-body {
+			display: flex;
+			justify-content: space-around;
+
+			.panel-item {
 				display: flex;
+				flex-direction: column;
+				align-items: center;
 				justify-content: space-around;
-				.panel-item {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: space-around;
-					padding: 10px 0;
-					font-size: 13px;
+				padding: 10px 0;
+				font-size: 13px;
+
+				.icon {
+					width: 35px;
+					height: 35px;
 				}
 			}
 		}
+	}
+
+	.panel-list-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 15px;
+		padding: 0px 10px;
+		line-height: 45px;
+		border-bottom: 1px solid #F4F4F4;
 	}
 </style>
