@@ -23,6 +23,11 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.address-border {
+  display: block;
+  width: 100%;
+  height: 5px;
+}
 .address-choose-box {
   height: 90px;
   display: flex;

@@ -21,6 +21,9 @@
 			</view>
 		</view>
 
+		<!-- 分割线 -->
+		<image src="../../static/cart_border@2x.png" class="address-border"></image>
+		
 	</view>
 </template>
 
@@ -57,6 +60,12 @@
 </script>
 
 <style lang="scss">
+	.address-border {
+		display: block;
+		width: 100%;
+		height: 5px;
+	}
+
 	.address-choose-box {
 		height: 90px;
 		display: flex;
