@@ -74,12 +74,20 @@
 					order_number: orderNumber
 				})
 				console.log(res2)
-				if (res2.meta.status !== 200) return uni.$showMsg('预付订单生成失败!')
-				const payInfo = res2.message.pay
-				console.log(payInfo)
-				
-				// const succ = await uni.requestPayment(payInfo)
-				// console.log(succ)
+				//if (res2.meta.status !== 200) return uni.$showMsg('预付订单生成失败!')
+				//const payInfo = res2.message.pay
+				//console.log(payInfo)
+
+				//mock
+				const payInfo = {
+					nonceStr: '',
+					package: '',
+					paySign: '',
+					signType: '',
+					timeStamp: '',
+				}
+				const succ = await uni.requestPayment(payInfo)
+				console.log(succ)
 			},
 			showTips(n) {
 				uni.showToast({
