@@ -28,9 +28,10 @@
 			};
 		},
 		computed: {
-			...mapGetters('m_cart', ['checkedCount', 'total']),
+			...mapGetters('m_cart', ['checkedCount', 'total', 'checkedGoodsAmount']),
 			...mapGetters('m_user', ['addstr']),
 			...mapState('m_user', ['token']),
+			...mapState('m_cart', ['cart']),
 			isFullChecked() {
 				return this.checkedCount === this.total
 			}
@@ -46,6 +47,39 @@
 				if (!this.addstr) return uni.$showMsg('请选择收货地址!')
 				// if (!this.token) return uni.$showMsg('请先登录!')
 				if (!this.token) return this.delayNavigate()
+				this.payOrder()
+			},
+			async payOrder() {
+				const orderInfo = {
+					//order_price: this.checkedGoodsAmount,
+					order_price: 0.01,
+					consignee_addr: this.addstr,
+					goods: this.cart.filter(goods => goods.goods_state).map(goods => ({
+						goods_id: goods.goods_id,
+						goods_number: goods.goods_count,
+						goods_price: goods.goods_price,
+					})),
+				}
+				// console.log(orderInfo)
+				const {
+					data: res
+				} = await uni.$http.post('/api/public/v1/my/orders/create', orderInfo)
+				if (res.meta.status !== 200) return uni.$showMsg('创建订单失败!')
+				const orderNumber = res.message.order_number
+				console.log(orderNumber)
+
+				const {
+					data: res2
+				} = await uni.$http.post('/api/public/v1/my/orders/req_unifiedorder', {
+					order_number: orderNumber
+				})
+				console.log(res2)
+				if (res2.meta.status !== 200) return uni.$showMsg('预付订单生成失败!')
+				const payInfo = res2.message.pay
+				console.log(payInfo)
+				
+				// const succ = await uni.requestPayment(payInfo)
+				// console.log(succ)
 			},
 			showTips(n) {
 				uni.showToast({
@@ -58,13 +92,13 @@
 			delayNavigate() {
 				this.seconds = 3
 				this.showTips(this.seconds)
-				
+
 				this.timer = setInterval(() => {
 					this.seconds--
 					if (this.seconds <= 0) {
 						clearInterval(this.timer)
 						uni.switchTab({
-							url:'/pages/my/my',
+							url: '/pages/my/my',
 							success: () => {
 								this.updateRedirectInfo({
 									openType: 'switchTab',
