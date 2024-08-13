@@ -80,14 +80,21 @@
 
 				//mock
 				const payInfo = {
-					nonceStr: '',
-					package: '',
-					paySign: '',
-					signType: '',
-					timeStamp: '',
+				  timeStamp: '',
+				  nonceStr: '',
+				  package: '',
+				  signType: '',
+				  paySign: ''
 				}
-				const succ = await uni.requestPayment(payInfo)
-				console.log(succ)
+				uni.requestPayment({
+				  ...payInfo,
+				  success(res) {
+				    uni.$showMsg('支付成功');
+				  },
+				  fail(err) {
+				    uni.$showMsg('支付失败');
+				  }
+				});
 			},
 			showTips(n) {
 				uni.showToast({
