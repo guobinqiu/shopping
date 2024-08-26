@@ -11,9 +11,7 @@ export default {
 	},
 	mutations: {
 		addToCart(state, goods) {
-			const findResult = state.cart.find(function(x) {
-				return x.goods_id === goods.goods_id
-			})
+			const findResult = state.cart.find(x => {x.goods_id === goods.goods_id})
 			//console.log(findResult)
 
 			if (findResult) {
@@ -29,27 +27,21 @@ export default {
 			uni.setStorageSync('cart', JSON.stringify(state.cart))
 		},
 		updateGoodsState(state, goods) {
-			const findResult = state.cart.find(function(x) {
-				return x.goods_id === goods.goods_id
-			})
+			const findResult = state.cart.find(x => x.goods_id === goods.goods_id)
 			if (findResult) {
 				findResult.goods_state = goods.goods_state
 				this.commit('m_cart/saveToStorage')
 			}
 		},
 		updateGoodsCount(state, goods) {
-			const findResult = state.cart.find(function(x) {
-				return x.goods_id === goods.goods_id
-			})
+			const findResult = state.cart.find(x => x.goods_id === goods.goods_id)
 			if (findResult) {
 				findResult.goods_count = goods.goods_count
 				this.commit('m_cart/saveToStorage')
 			}
 		},
 		removeGoodsById(state, goods) {
-			state.cart = state.cart.filter(function(x) {
-				return x.goods_id !== goods.goods_id
-			})
+			state.cart = state.cart.filter(x => x.goods_id !== goods.goods_id)
 			this.commit('m_cart/saveToStorage')
 		},
 		updateAllGoodsState(state, newState) {
@@ -60,7 +52,7 @@ export default {
 	getters: {
 		total(state) {
 			// let c = 0
-			// state.cart.forEach(function(x) {
+			// state.cart.forEach(x => {
 			// 	c += x.goods_count
 			// })
 			// return c

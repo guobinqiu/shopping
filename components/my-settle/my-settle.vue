@@ -5,7 +5,7 @@
 		</label>
 
 		<view class="amount-box">
-			合计:<text class="amount">¥123.00</text>
+			合计:<text class="amount">¥{{checkedGoodsAmount}}</text>
 		</view>
 
 		<view class="btn-settle" @click="settlement">结算({{checkedCount}})</view>
